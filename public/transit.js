@@ -1,7 +1,7 @@
 // Berlin stations: public fixed-bounding-box queries never include customer coordinates.
 (function(){
  'use strict';
- const PREFIX='technikcheck-rail-stations-v5-',MAX_AGE=7*86400000;
+ const PREFIX='technikcheck-rail-stations-v6-',MAX_AGE=7*86400000;
  const bounds='(52.29,12.95,52.74,13.85)';
  const kinds=['U','S'];
  const stationLists={U:[],S:[]};
@@ -45,6 +45,11 @@
  };
  window.nearestRailStations=(lat,lng)=>({U:window.nearestRailStation(lat,lng,'U'),S:window.nearestRailStation(lat,lng,'S')});
  window.railStationsStatus=()=>({U:stationLists.U.length,S:stationLists.S.length});
+ // Bundled S-Bahn coordinates ship with this app; no Overpass call for S-Bahn.
+ fetch('/data/berlin-sbahn-stations.json',{cache:'force-cache'})
+  .then(response=>{if(!response.ok)throw Error('Bundled S-Bahn JSON missing');return response.json();})
+  .then(data=>{const valid=(data.stations||[]).filter(x=>validStation(x)&&x.kind==='S');if(valid.length)update('S',valid);})
+  .catch(error=>console.warn('Lokale S-Bahn-Stationsdatei fehlt:',error.message));
  const queries={
   U:[`[out:json][timeout:25];(nwr["station"="subway"]${bounds};nwr["railway"="station"]["subway"="yes"]${bounds};);out center;`],
   // S-Bahn stations frequently have NO network/operator tag. Route membership is a stronger signal.
@@ -87,5 +92,6 @@
    }
   }
  }
- for(const kind of kinds)load(kind);
+ // Only the existing U-Bahn fallback is queried externally; S-Bahn is bundled.
+ load('U');
 })();
