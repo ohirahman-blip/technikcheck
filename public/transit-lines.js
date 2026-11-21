@@ -2,14 +2,14 @@
 // Fetches one fixed Berlin area: customer names, addresses and coordinates are never sent.
 (function(){
  'use strict';
- const key='technikcheck-transit-routes-v2',ttl=7*86400000;
+ const key='technikcheck-transit-routes-v3',ttl=7*86400000;
  let features=[];
  try{const item=JSON.parse(localStorage.getItem(key)||'null');if(item&&Date.now()-item.saved<ttl&&Array.isArray(item.features))features=item.features;}catch{}
  const fallback={U:'#1767bc',S:'#198352'};
  const bbox='(52.29,12.95,52.74,13.85)';
  const routes=[
-  {kind:'U',query:`[out:json][timeout:35];relation["type"="route"]["route"="subway"]["operator"~"BVG|Berliner Verkehrsbetriebe",i]${bbox};out body geom;`},
-  {kind:'S',query:`[out:json][timeout:35];relation["type"="route"]["route"="train"]["operator"~"S-Bahn Berlin",i]${bbox};out body geom;`}
+  {kind:'U',query:`[out:json][timeout:35];relation["type"="route"]["route"="subway"]["ref"~"^U[0-9]+$"]${bbox};out geom;`},
+  {kind:'S',query:`[out:json][timeout:35];relation["type"="route"]["route"="train"]["ref"~"^S[0-9]+$"]${bbox};out geom;`}
  ];
  function parse(data,kind){
   const seen=new Set(),result=[];

@@ -66,7 +66,7 @@ export async function mountCustomerPortal(root,api){
   async function start(){
     if(!navigator.onLine)return offline();
     if(device.secret&&api){
-      frame('<section class="customer-stage"><div class="customer-symbol">✳</div><h1>Einen Moment …</h1><p>Ihre Technikhilfe wird geöffnet.</p></section>');
+      frame('<section class="customer-stage"><div class="customer-loader" aria-hidden="true"></div><h1>Einen Moment …</h1><p>Ihre Technikhilfe wird geöffnet.</p></section>');
       try{const result=await api.status(device.secret);if(!handleResult(result))return;device.greeting=result.greeting;save();pending=result.pending;return pending?success():home();}catch(error){return failure(error);}
     }
     if(device.secret||device.code)return pending?success():home();pinScreen();
