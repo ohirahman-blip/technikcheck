@@ -57,7 +57,7 @@
     const meta=[t.network,t.operator,t['network:short']].filter(Boolean).join(' ');
     if(isU||!(/S[- ]?Bahn/i.test(meta)||t.station==='light_rail'))continue;
    }
-   const cleanName=name.replace(/^S\\+U\\s+/i,'').trim();
+   const cleanName=name;
    const key=cleanName.toLocaleLowerCase('de-DE');
    if(!unique.has(key))unique.set(key,{name:cleanName,kind,lat,lng});
   }
