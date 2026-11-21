@@ -29,6 +29,6 @@ test('local U-Bahn file is present and independent of browser cache',()=>{
  }
  for(const name of ['Rudow','Alexanderplatz','Hermannplatz','Hauptbahnhof','Wittenau','Alt-Tegel'])assert.ok(names.has(name),name);
  const loader=readFileSync(new URL('../public/transit.js',import.meta.url),'utf8');
- assert.match(loader,/berlin-.*ubahn/);
+ assert.ok(loader.includes("kind==='U'?'ubahn':'sbahn'"));
  assert.doesNotMatch(loader,/overpass\.kumi|overpass-api\.de/);
 });
