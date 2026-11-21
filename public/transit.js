@@ -1,7 +1,7 @@
 // Berlin stations: public fixed-bounding-box queries never include customer coordinates.
 (function(){
  'use strict';
- const PREFIX='technikcheck-rail-stations-v6-',MAX_AGE=7*86400000;
+ const PREFIX='technikcheck-rail-stations-v7-',MAX_AGE=7*86400000;
  const bounds='(52.29,12.95,52.74,13.85)';
  const kinds=['U','S'];
  const stationLists={U:[],S:[]};
@@ -45,53 +45,15 @@
  };
  window.nearestRailStations=(lat,lng)=>({U:window.nearestRailStation(lat,lng,'U'),S:window.nearestRailStation(lat,lng,'S')});
  window.railStationsStatus=()=>({U:stationLists.U.length,S:stationLists.S.length});
- // Bundled S-Bahn coordinates ship with this app; no Overpass call for S-Bahn.
- fetch('/data/berlin-sbahn-stations.json',{cache:'force-cache'})
-  .then(response=>{if(!response.ok)throw Error('Bundled S-Bahn JSON missing');return response.json();})
-  .then(data=>{const valid=(data.stations||[]).filter(x=>validStation(x)&&x.kind==='S');if(valid.length)update('S',valid);})
-  .catch(error=>console.warn('Lokale S-Bahn-Stationsdatei fehlt:',error.message));
- const queries={
-  U:[`[out:json][timeout:25];(nwr["station"="subway"]${bounds};nwr["railway"="station"]["subway"="yes"]${bounds};);out center;`],
-  // S-Bahn stations frequently have NO network/operator tag. Route membership is a stronger signal.
-  S:[
-   `[out:json][timeout:30];relation["type"="route"]["route"="train"]["ref"~"^S[0-9]+$"]${bounds}->.routes;(node(r.routes:"stop");node(r.routes:"stop_entry_only");node(r.routes:"stop_exit_only");node(r.routes:"platform");way(r.routes:"platform"););out center;`,
-   `[out:json][timeout:25];(nwr["railway"~"station|halt"]["network"~"S[- ]?Bahn",i]${bounds};nwr["railway"~"station|halt"]["operator"~"S[- ]?Bahn",i]${bounds};);out center;`
-  ]
- };
- function parse(data,kind){
-  const unique=new Map();
-  for(const item of data.elements||[]){
-   const t=item.tags||{},name=String(t.name||'').trim();
-   const lat=Number(item.lat??item.center?.lat),lng=Number(item.lon??item.center?.lon);
-   if(!name||!Number.isFinite(lat)||!Number.isFinite(lng))continue;
-   const isU=t.station==='subway'||t.subway==='yes';
-   if(kind==='U'&&!isU)continue;
-   if(kind==='S'){
-    const meta=[t.network,t.operator,t['network:short']].filter(Boolean).join(' ');
-    if(isU)continue; // Route-member results are confirmed S-Bahn stops, even without network tags.
-   }
-   const cleanName=name;
-   const key=cleanName.toLocaleLowerCase('de-DE');
-   if(!unique.has(key))unique.set(key,{name:cleanName,kind,lat,lng});
-  }
-  return [...unique.values()];
+ // Both kinds are served from the same deployment. Production and localhost use identical files.
+ for(const kind of kinds){
+  fetch('/data/berlin-'+(kind==='U'?'ubahn':'sbahn')+'-stations.json',{cache:'no-cache'})
+   .then(response=>{if(!response.ok)throw new Error('Bahnhofsdaten fehlen: '+response.status);return response.json();})
+   .then(data=>{
+    const valid=(data.stations||[]).filter(x=>validStation(x)&&x.kind===kind);
+    if(valid.length)update(kind,valid);
+    else console.warn('Keine gültigen '+kind+'-Bahnhöfe in der lokalen Datei');
+   })
+   .catch(error=>console.warn('Lokale '+kind+'-Bahnhofsdaten konnten nicht geladen werden:',error.message));
  }
- async function load(kind){
-  if(stationLists[kind].length)return;
-  const urls=['https://overpass.kumi.systems/api/interpreter','https://overpass-api.de/api/interpreter'];
-  for(const query of queries[kind]){
-   for(const endpoint of urls){
-    const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),22000);
-    try{
-     const response=await fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams({data:query}),signal:controller.signal});
-     if(!response.ok)throw new Error('HTTP '+response.status);
-     const result=parse(await response.json(),kind);
-     if(result.length){update(kind,result);return;}
-    }catch(error){console.info(kind+'-Bahnhöfe konnten nicht geladen werden:',error.message);}
-    finally{clearTimeout(timeout);}
-   }
-  }
- }
- // Only the existing U-Bahn fallback is queried externally; S-Bahn is bundled.
- load('U');
 })();
