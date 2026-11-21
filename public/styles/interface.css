@@ -26,3 +26,9 @@
 
 .rail-map-marker{display:grid;place-items:center;width:26px;height:26px;border:2px solid white;box-shadow:0 1px 8px #0005;color:white;font:900 16px Arial,sans-serif;cursor:pointer;border-radius:5px;}
 .rail-map-marker.rail-s{border-radius:50%}
+
+/* Consistent, legible navigation arrows across desktop and mobile. */
+.ui-arrow{display:inline-block;width:17px;height:17px;flex:none;vertical-align:-3px;stroke:currentColor;stroke-width:2.8;overflow:visible;}
+.btn .ui-arrow,.auth-home .ui-arrow,.text-button .ui-arrow{width:18px;height:18px;}
+.btn:has(.ui-arrow),.auth-home:has(.ui-arrow){gap:7px;}
+@media(max-width:720px){.ui-arrow{width:18px;height:18px;}}
