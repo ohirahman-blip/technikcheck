@@ -24,6 +24,7 @@ function applyLightMapTheme(style){
  const colors={background:'#ffffff',earth:'#fafbfc',landcover:'#f6f8f5',landuse_park:'#eaf5e9',landuse_urban_green:'#eaf5e9',landuse_hospital:'#f8eeee',landuse_industrial:'#f3f4f6',landuse_school:'#f3f6fa',landuse_beach:'#fff7e7',landuse_zoo:'#eef5eb',landuse_aerodrome:'#f3f4f6',water:'#d9edf7',waterway:'#b8dceb'};
  for(const layer of style.layers){
   const id=layer.id,paint=layer.paint||{},type=layer.type;
+  if(id==='roads_shields'){layer.layout={...layer.layout,visibility:'none'};continue;}
   if(type==='background'){paint['background-color']='#ffffff';continue;}
   if(type==='fill'){
    if(id.includes('building'))paint['fill-color']='#e9edf1';
@@ -39,9 +40,9 @@ function applyLightMapTheme(style){
    } else paint['line-color']='#d7dde2';
   }
   if(type==='symbol'){
-   if(paint['text-color'])paint['text-color']='#55616c';
+   if(paint['text-color'])paint['text-color']='#6e7781';
    if(paint['text-halo-color'])paint['text-halo-color']='#ffffff';
-   if(paint['icon-color'])paint['icon-color']='#617180';
+   if(paint['icon-color'])paint['icon-color']='#84909b';
   }
   if(type==='circle'){
    if(paint['circle-color'])paint['circle-color']='#758799';
