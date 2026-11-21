@@ -1,3 +1,4 @@
+import './controls.js';
 import { createClient } from '@supabase/supabase-js';
 import { createLocalStore, createCloudStore } from './storage.js';
 
@@ -21,7 +22,7 @@ function login(client) {
   panel.innerHTML = '<form class="card auth-form"><div class="eyebrow">TECHNIKPLAN</div><h1>Deine Kunden. Überall.</h1><p>Melde dich an, um auf deine Kunden und Termine zuzugreifen.</p><label>E-Mail<input name="email" type="email" autocomplete="username" required></label><label>Passwort<input name="password" type="password" autocomplete="current-password" minlength="8" required></label><button class="btn primary" type="submit">Anmelden</button><button class="btn" id="register" type="button">Konto erstellen</button><p class="status-note" role="status"></p></form>';
   const form = panel.querySelector('form'), status = form.querySelector('[role=status]');
   async function submit(register) {
-    if (!form.reportValidity()) return;
+    if (!window.validateForm(form)) return;
     const values = Object.fromEntries(new FormData(form));
     form.querySelectorAll('button').forEach(b => b.disabled = true);
     try {

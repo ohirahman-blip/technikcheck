@@ -58,7 +58,9 @@ in dieses öffentliche GitHub-Repository hochladen.
 
 ## Design bearbeiten
 
-- `index.html`: HTML-Grundstruktur und CSS.
+- `index.html`: HTML-Grundstruktur.
+- `public/styles/interface.css`: helles Design und Animationen.
+- `src/controls.js`: eigene Dropdowns, Kalender, Uhrzeit, Zahlenfelder und Dialoge.
 - `public/ui.js`: bestehende Ansichten, Formulare und Kartenbedienung.
 - `src/main.js`: Start und Anmeldung.
 - `src/storage.js`: lokaler Speicher und Supabase-Anbindung.
