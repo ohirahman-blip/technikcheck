@@ -17,7 +17,7 @@ async function mount(store,client){
   button.onclick=async()=>{if(client){const {error}=await client.auth.signOut();if(error){window.popup?.(error.message,true);return;}}location.href='/admin';};controls.append(button);
   if(!client){const note=document.createElement('div');note.className='mode-note';note.textContent='Lokale Vorschau ohne Anmeldung. Kundenanfragen und Einrichtungscodes benötigen Supabase.';controls.append(note);}
   const css=document.createElement('link');css.rel='stylesheet';css.href='/vendor/maplibre-gl.css';document.head.append(css);
-  await loadScript('/vendor/maplibre-gl.js');await loadScript('/vendor/pmtiles.js');await loadScript('/map/style.js');await loadScript('/portal-admin.js');await loadScript('/ui.js');
+  await loadScript('/vendor/maplibre-gl.js');await loadScript('/vendor/pmtiles.js');await loadScript('/map/style.js');await loadScript('/transit.js');await loadScript('/portal-admin.js');await loadScript('/ui.js');
   if(client){client.auth.onAuthStateChange(event=>{if(event==='SIGNED_OUT')location.href='/admin';});setInterval(()=>{if(!document.hidden)window.dispatchEvent(new Event('technikplan-data-changed'));},30000);}
 }
 function login(client,message=''){
