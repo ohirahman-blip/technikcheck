@@ -10,31 +10,31 @@ export async function mountCustomerPortal(root,api){
   if(!/^\d{4}$/.test(device.code||''))delete device.code;
   let busy=false,pin='',pending=false,storageWarning=false;
   function save(){try{localStorage.setItem(KEY,JSON.stringify(device));storageWarning=false;}catch{storageWarning=true;}}
-  function frame(html){root.innerHTML=`<main class="customer-app"><header><div class="customer-logo">✳</div><span>Ihre Technikhilfe</span></header>${html}<footer><a href="${TEL}">${PHONE}</a></footer></main>`;}
-  function offline(){frame(`<section class="customer-stage"><div class="customer-symbol">↗</div><h1>Sie haben wahrscheinlich gerade Internetprobleme.</h1><p>Bitte rufen Sie mich unter <strong>${PHONE}</strong> an.</p><a class="btn primary customer-call" href="${TEL}">Jetzt anrufen</a><button class="text-button" id="retry">Erneut versuchen</button></section>`);root.querySelector('#retry').onclick=()=>start();}
-  function unavailable(message){frame(`<section class="customer-stage"><h1>Bitte rufen Sie mich an.</h1><p>${escape(message)}</p><a class="btn primary customer-call" href="${TEL}">Jetzt anrufen</a><button class="text-button" id="back">Zurück</button></section>`);root.querySelector('#back').onclick=()=>start();}
+  function frame(html){root.innerHTML=`<main class="customer-app"><header><div class="wordmark customer-wordmark" aria-label="Technik Hilfe"><span>Technik</span><span>Hilfe</span></div></header>${html}</main>`;}
+  function offline(){frame(`<section class="customer-stage"><h1>Sie haben wahrscheinlich gerade Internetprobleme.</h1><p>Bitte rufen Sie mich unter <strong>${PHONE}</strong> an.</p><a class="btn primary customer-call" href="${TEL}">Jetzt anrufen</a><button class="text-button" id="retry">Erneut versuchen</button></section>`);root.querySelector('#retry').onclick=()=>start();}
+  function unavailable(message){frame(`<section class="customer-stage"><h1>Gerade nicht verfügbar.</h1><p>${escape(message)}</p><button class="text-button" id="back">Zurück</button></section>`);root.querySelector('#back').onclick=()=>start();}
   function handleResult(result){
     if(result?.ok)return true;
     if(result?.code==='invalid_device'){device={};save();pinScreen();return false;}
-    if(result?.code==='rate_limited'){unavailable('Bitte warten Sie einen Moment. Sie können mich auch direkt telefonisch erreichen.');return false;}
+    if(result?.code==='rate_limited'){unavailable('Bitte warten Sie einen Moment und versuchen Sie es später erneut.');return false;}
     if(result?.code==='invalid_setup')throw new Error('Dieser Einrichtungscode ist ungültig oder abgelaufen. Bitte einen neuen Code von mir verwenden.');
-    unavailable('Die Online-Anfrage ist gerade nicht verfügbar. Sie erreichen mich telefonisch.');return false;
+    unavailable('Die Online-Anfrage ist gerade nicht verfügbar. Bitte versuchen Sie es später erneut.');return false;
   }
   function failure(error){
     if(!navigator.onLine||/fetch|network|load failed|timeout|abort/i.test(error.message))offline();
-    else unavailable('Die Anfrage konnte nicht bestätigt werden. Bitte rufen Sie mich an.');
+    else unavailable('Die Anfrage konnte nicht bestätigt werden. Bitte versuchen Sie es später erneut.');
   }
   function home(){
     const name=device.secret&&device.greeting?`Hallo ${escape(device.greeting)}.`:'Willkommen.';
-    frame(`<section class="customer-stage"><div class="customer-symbol">✳</div><h1>${name}</h1><p>Sie brauchen Unterstützung?<br>Ich helfe Ihnen gerne.</p><button class="help-button" id="requestHelp"><span class="help-plus">+</span><span>Ich brauche<br>Technikhilfe</span><span class="help-caption">Tippen Sie hier für einen Rückruf</span></button>${storageWarning?'<p class="customer-small">Der Zugang konnte auf diesem Gerät nicht dauerhaft gespeichert werden. Bitte bewahren Sie Ihren vierstelligen Code auf.</p>':''}<p class="customer-small">Sie können mich auch direkt anrufen.</p><a class="customer-phone" href="${TEL}">${PHONE}</a></section><button class="setup-link" id="changeCode">${device.secret?'Neueinrichtung':'Anderen Code eingeben'}</button>`);
+    frame(`<section class="customer-stage"><h1>${name}</h1><p>Sie brauchen Unterstützung?<br>Ich helfe Ihnen gerne.</p><button class="help-button" id="requestHelp"><span class="help-plus">+</span><span>Ich brauche<br>Technikhilfe</span><span class="help-caption">Tippen Sie hier für einen Rückruf</span></button>${storageWarning?'<p class="customer-small">Der Zugang konnte auf diesem Gerät nicht dauerhaft gespeichert werden. Bitte bewahren Sie Ihren vierstelligen Code auf.</p>':''}<p class="customer-small">Ihre Rückrufanfrage wird direkt an mich gesendet.</p></section><button class="setup-link" id="changeCode">${device.secret?'Neueinrichtung':'Anderen Code eingeben'}</button>`);
     root.querySelector('#changeCode').onclick=()=>device.secret?setupScreen():pinScreen();
     root.querySelector('#requestHelp').onclick=send;
   }
   function success(){
-    frame(`<section class="customer-stage"><div class="customer-symbol success-symbol">✓</div><h1>Vielen Dank für Ihre Anfrage.</h1><p>Sie werden in Kürze angerufen.</p><div class="request-received"><span></span>Rückruf angefragt</div><p class="customer-small">Sie müssen nichts weiter tun.</p><a class="btn customer-call" href="${TEL}">Direkt anrufen</a></section>`);
+    frame(`<section class="customer-stage"><div class="customer-symbol success-symbol">✓</div><h1>Vielen Dank für Ihre Anfrage.</h1><p>Sie werden in Kürze angerufen.</p><div class="request-received"><span></span>Rückruf angefragt</div><p class="customer-small">Sie müssen nichts weiter tun.</p></section>`);
   }
   async function send(){
-    if(busy)return;if(!navigator.onLine)return offline();if(!api)return unavailable('Die Online-Anfrage ist noch nicht eingerichtet. Bitte rufen Sie mich an.');
+    if(busy)return;if(!navigator.onLine)return offline();if(!api)return unavailable('Die Online-Anfrage ist noch nicht eingerichtet.');
     busy=true;const b=root.querySelector('#requestHelp');b.disabled=true;b.querySelector('.help-caption').textContent='Anfrage wird gesendet …';
     try{const result=await api.send(device);if(handleResult(result)){pending=true;success();}}catch(error){failure(error);}finally{busy=false;if(b.isConnected)b.disabled=false;}
   }
@@ -52,7 +52,7 @@ export async function mountCustomerPortal(root,api){
     root.querySelector('#back').onclick=()=>device.secret||device.code?home():pinScreen();
     const form=root.querySelector('#setupForm');form.onsubmit=async event=>{
       event.preventDefault();if(!window.validateForm(form)||busy)return;
-      if(!navigator.onLine)return offline();if(!api)return unavailable('Die Einrichtung ist noch nicht verfügbar. Bitte rufen Sie mich an.');
+      if(!navigator.onLine)return offline();if(!api)return unavailable('Die Einrichtung ist noch nicht verfügbar.');
       const code=form.elements.code.value.trim().toLowerCase().replace(/\s/g,'');
       if(!/^[a-f0-9]{48}$/.test(code)){form.querySelector('[role=status]').textContent='Bitte den vollständigen langen Einrichtungscode eingeben.';return;}
       // Save the candidate secret before sending: a dropped response can be retried.
