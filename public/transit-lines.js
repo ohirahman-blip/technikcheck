@@ -32,12 +32,17 @@
  const notify=()=>window.dispatchEvent(new Event('technikcheck-transit-lines-ready'));
  if(features.length){queueMicrotask(notify);return;}
  Promise.all(routes.map(async route=>{
-  const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),25000);
-  try{
-   const resp=await fetch('https://overpass.kumi.systems/api/interpreter',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams({data:route.query}),signal:controller.signal});
-   if(!resp.ok)throw new Error('Status '+resp.status);
-   return parse(await resp.json(),route.kind);
-  }catch(error){console.info(route.kind+'-Bahnlinien derzeit nicht verfügbar:',error.message);return [];}finally{clearTimeout(timer);}
+  for(const endpoint of ['https://overpass.kumi.systems/api/interpreter','https://overpass-api.de/api/interpreter']){
+   const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),18000);
+   try{
+    const resp=await fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams({data:route.query}),signal:controller.signal});
+    if(!resp.ok)throw new Error('Status '+resp.status);
+    const result=parse(await resp.json(),route.kind);
+    if(result.length)return result;
+   }catch(error){console.info(route.kind+'-Bahnlinien bei '+endpoint+' nicht verfügbar:',error.message);}
+   finally{clearTimeout(timer);}
+  }
+  return [];
  })).then(parts=>{
   features=parts.flat();
   if(features.length){try{localStorage.setItem(key,JSON.stringify({saved:Date.now(),features}));}catch{}notify();}
