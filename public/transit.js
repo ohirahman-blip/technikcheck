@@ -43,7 +43,7 @@
  window.railStationsStatus=()=>({U:stationLists.U.length,S:stationLists.S.length});
  const queries={
   U:`[out:json][timeout:25];(nwr["station"="subway"]${bounds};nwr["railway"="station"]["subway"="yes"]${bounds};);out center;`,
-  S:`[out:json][timeout:25];(nwr["railway"~"station|halt"]["network"~"S[- ]?Bahn",i]${bounds};nwr["railway"~"station|halt"]["operator"~"S[- ]?Bahn",i]${bounds};nwr["railway"~"station|halt"]["station"="light_rail"]${bounds};nwr["railway"~"station|halt"]["name"~"^S\\+?U? ",i]${bounds};);out center;`
+  S:`[out:json][timeout:25];(nwr["railway"~"station|halt"]["network"~"S[- ]?Bahn",i]${bounds};nwr["railway"~"station|halt"]["operator"~"S[- ]?Bahn",i]${bounds};nwr["railway"~"station|halt"]["station"="light_rail"]${bounds};);out center;`
  };
  function parse(data,kind){
   const unique=new Map();
@@ -55,9 +55,9 @@
    if(kind==='U'&&!isU)continue;
    if(kind==='S'){
     const meta=[t.network,t.operator,t['network:short']].filter(Boolean).join(' ');
-    if(isU||!(/S[- ]?Bahn/i.test(meta)||t.station==='light_rail'||/^S\\+?U? /i.test(name)))continue;
+    if(isU||!(/S[- ]?Bahn/i.test(meta)||t.station==='light_rail'))continue;
    }
-   const cleanName=name.replace(/^S\\+?U?\s+/i,'').trim();
+   const cleanName=name.replace(/^S\\+U\\s+/i,'').trim();
    const key=cleanName.toLocaleLowerCase('de-DE');
    if(!unique.has(key))unique.set(key,{name:cleanName,kind,lat,lng});
   }
