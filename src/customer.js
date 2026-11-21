@@ -21,7 +21,7 @@ export async function mountCustomerPortal(root,api){
     unavailable('Die Online-Anfrage ist gerade nicht verfügbar. Bitte versuchen Sie es später erneut.');return false;
   }
   function failure(error){
-    if(!navigator.onLine||/fetch|network|load failed|timeout|abort/i.test(error.message))offline();
+    if(!navigator.onLine)offline();
     else unavailable('Die Anfrage konnte nicht bestätigt werden. Bitte versuchen Sie es später erneut.');
   }
   function home(){
@@ -59,7 +59,7 @@ export async function mountCustomerPortal(root,api){
       const candidate=device.setupSecret||secret();device.setupSecret=candidate;save();
       busy=true;const b=form.querySelector('button');b.disabled=true;
       try{const result=await api.enroll(code,candidate);if(handleResult(result)){device={secret:candidate,greeting:result.greeting,code:result.callback_code};save();navigator.storage?.persist?.().catch(()=>{});pending=false;home();}}
-      catch(error){if(!navigator.onLine||/fetch|network|load failed/i.test(error.message))offline();else form.querySelector('[role=status]').textContent=error.message;}
+      catch(error){if(!navigator.onLine)offline();else form.querySelector('[role=status]').textContent=error.message;}
       finally{busy=false;if(b.isConnected)b.disabled=false;}
     };
   }
