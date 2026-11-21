@@ -1,7 +1,7 @@
 // Berlin stations: public fixed-bounding-box queries never include customer coordinates.
 (function(){
  'use strict';
- const PREFIX='technikcheck-rail-stations-v4-',MAX_AGE=7*86400000;
+ const PREFIX='technikcheck-rail-stations-v5-',MAX_AGE=7*86400000;
  const bounds='(52.29,12.95,52.74,13.85)';
  const kinds=['U','S'];
  const stationLists={U:[],S:[]};
@@ -24,6 +24,10 @@
  for(const kind of kinds)stationLists[kind]=readCache(PREFIX+kind);
  // Restore older offline-cached stations, rather than losing previously displayed U-Bahn.
  if(!stationLists.U.length){
+  const recent=readCache('technikcheck-rail-stations-v4-U');
+  if(recent.length)stationLists.U=recent.filter(s=>s.kind==='U');
+ }
+ if(!stationLists.U.length){
   const legacy=readCache('technikcheck-rail-stations-v1');
   if(legacy.length)stationLists.U=legacy.filter(s=>s.kind==='U');
  }
@@ -42,8 +46,12 @@
  window.nearestRailStations=(lat,lng)=>({U:window.nearestRailStation(lat,lng,'U'),S:window.nearestRailStation(lat,lng,'S')});
  window.railStationsStatus=()=>({U:stationLists.U.length,S:stationLists.S.length});
  const queries={
-  U:`[out:json][timeout:25];(nwr["station"="subway"]${bounds};nwr["railway"="station"]["subway"="yes"]${bounds};);out center;`,
-  S:`[out:json][timeout:25];(nwr["railway"~"station|halt"]["network"~"S[- ]?Bahn",i]${bounds};nwr["railway"~"station|halt"]["operator"~"S[- ]?Bahn",i]${bounds};nwr["railway"~"station|halt"]["station"="light_rail"]${bounds};);out center;`
+  U:[`[out:json][timeout:25];(nwr["station"="subway"]${bounds};nwr["railway"="station"]["subway"="yes"]${bounds};);out center;`],
+  // S-Bahn stations frequently have NO network/operator tag. Route membership is a stronger signal.
+  S:[
+   `[out:json][timeout:30];relation["type"="route"]["route"="train"]["ref"~"^S[0-9]+$"]${bounds}->.routes;(node(r.routes:"stop");node(r.routes:"stop_entry_only");node(r.routes:"stop_exit_only");node(r.routes:"platform");way(r.routes:"platform"););out center;`,
+   `[out:json][timeout:25];(nwr["railway"~"station|halt"]["network"~"S[- ]?Bahn",i]${bounds};nwr["railway"~"station|halt"]["operator"~"S[- ]?Bahn",i]${bounds};);out center;`
+  ]
  };
  function parse(data,kind){
   const unique=new Map();
@@ -55,7 +63,7 @@
    if(kind==='U'&&!isU)continue;
    if(kind==='S'){
     const meta=[t.network,t.operator,t['network:short']].filter(Boolean).join(' ');
-    if(isU||!(/S[- ]?Bahn/i.test(meta)||t.station==='light_rail'))continue;
+    if(isU)continue; // Route-member results are confirmed S-Bahn stops, even without network tags.
    }
    const cleanName=name;
    const key=cleanName.toLocaleLowerCase('de-DE');
@@ -65,18 +73,19 @@
  }
  async function load(kind){
   if(stationLists[kind].length)return;
-  for(const endpoint of ['https://overpass.kumi.systems/api/interpreter','https://overpass-api.de/api/interpreter']){
-   const controller=new AbortController();
-   const timeout=setTimeout(()=>controller.abort(),18000);
-   try{
-    const response=await fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams({data:queries[kind]}),signal:controller.signal});
-    if(!response.ok)throw new Error('HTTP '+response.status);
-    const found=parse(await response.json(),kind);
-    if(found.length){update(kind,found);return;}
-   }catch(error){console.info(kind+'-Bahnhöfe konnten nicht geladen werden:',error.message);}
-   finally{clearTimeout(timeout);}
+  const urls=['https://overpass.kumi.systems/api/interpreter','https://overpass-api.de/api/interpreter'];
+  for(const query of queries[kind]){
+   for(const endpoint of urls){
+    const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),22000);
+    try{
+     const response=await fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams({data:query}),signal:controller.signal});
+     if(!response.ok)throw new Error('HTTP '+response.status);
+     const result=parse(await response.json(),kind);
+     if(result.length){update(kind,result);return;}
+    }catch(error){console.info(kind+'-Bahnhöfe konnten nicht geladen werden:',error.message);}
+    finally{clearTimeout(timeout);}
+   }
   }
  }
- // Separate requests: missing S-Bahn never prevents available U-Bahn from appearing.
  for(const kind of kinds)load(kind);
 })();
