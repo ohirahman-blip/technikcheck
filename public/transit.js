@@ -29,7 +29,7 @@
  }
  if(!stationLists.U.length||!stationLists.S.length){
   const legacy=readCache('technikcheck-rail-stations-v3');
-  for(const kind of kinds)if(!stationLists[kind].length)stationLists[kind]=legacy.filter(s=>s.kind===kind);
+  if(!stationLists.U.length)stationLists.U=legacy.filter(s=>s.kind==='U');
  }
  window.nearestRailStation=(lat,lng,kind=null)=>{
   lat=Number(lat);lng=Number(lng);
