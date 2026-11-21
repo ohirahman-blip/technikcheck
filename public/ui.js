@@ -51,7 +51,7 @@ function applyLightMapTheme(style){
  }
  return style;
 }
-document.addEventListener('click',e=>{const btn=e.target.closest('[data-map-customer]');if(btn)showCustomer(Number(btn.dataset.mapCustomer));});
+
 const berlinBounds=[[13.075,52.335],[13.765,52.685]];
 if(window.maplibregl&&window.pmtiles){const protocol=new pmtiles.Protocol();maplibregl.addProtocol('pmtiles',protocol.tile);}
 function addBerlinTransitLines(m){
