@@ -32,11 +32,17 @@ function makeOfflineMap(container,center=[13.405,52.52],zoom=10){
  return m;
 }
 function drawMap(){let el=$('#mainMap');if(!el)return;if(!window.maplibregl||!window.offlineMapStyle){el.innerHTML='<div class="empty">Kartendateien fehlen. Bitte das gesamte Paket entpacken.</div>';return}
- map=makeOfflineMap('mainMap');let ids=new Set(active().map(a=>a.customer_id)),bounds=new maplibregl.LngLatBounds();let count=0;
+ map=makeOfflineMap('mainMap');let ids=new Set(active().map(a=>a.customer_id)),bounds=new maplibregl.LngLatBounds(),stationKeys=new Set();let count=0;
  state.customers.filter(c=>(view==='dashboard'?!c.archived:ids.has(c.id))&&c.lat!=null&&c.lng!=null).forEach(c=>{
   const point=[Number(c.lng),Number(c.lat)],station=window.nearestRailStation?.(c.lat,c.lng);
   const nearby=station?`<div class="station-popup"><span class="rail-icon ${station.kind==='U'?'rail-u':'rail-s'}">${station.kind}</span> ${esc(station.name)}<br><small>ca. ${station.meters} m Luftlinie</small></div>`:'<small class="muted">U-/S-Bahn-Station aktuell nicht verfügbar</small>';
   new maplibregl.Marker({color:'#c62828'}).setLngLat(point).setPopup(new maplibregl.Popup().setHTML(`<b>${esc(c.name)}</b><br>${esc(c.address)}<br>${nearby}`)).addTo(map);
+  if(station&&!stationKeys.has(station.kind+station.name)){
+    stationKeys.add(station.kind+station.name);
+    const marker=document.createElement('div');marker.className='rail-map-marker '+(station.kind==='U'?'rail-u':'rail-s');marker.textContent=station.kind;
+    marker.setAttribute('aria-label',station.kind+'-Bahnhof '+station.name);
+    new maplibregl.Marker({element:marker,anchor:'center'}).setLngLat([station.lng,station.lat]).setPopup(new maplibregl.Popup().setText(station.kind+'-Bahnhof '+station.name)).addTo(map);
+  }
   bounds.extend(point);count++;
  });
  if(count)map.fitBounds(bounds,{padding:45,maxZoom:14,duration:0});
