@@ -87,3 +87,14 @@ html,body,button,input,select,textarea{font-family:'Helvetica Neue',Helvetica,Ar
 .customer-loader{width:48px;height:48px;border:4px solid #e8e8ea;border-top-color:#c62828;border-radius:50%;animation:technik-spin .8s linear infinite;margin:0 auto 18px}
 @keyframes technik-spin{to{transform:rotate(360deg)}}
 @media(max-width:720px){#mainMap{height:470px}.map-details-overlay{align-items:flex-end;padding:0}.map-details-panel{width:100%;max-height:82dvh;border-radius:24px 24px 0 0;border-bottom:0;padding-bottom:env(safe-area-inset-bottom)}.map-details-panel .map-popup-card{padding:26px}.feature{grid-template-columns:1fr}}
+
+/* Mobile requests: four quiet filters, one row, no wrapping or tall pills. */
+.request-tabs{display:flex;flex-wrap:nowrap;align-items:stretch;min-width:0;max-width:100%;width:max-content;gap:3px;margin:0;padding:4px;}
+.request-tabs button{display:flex;align-items:center;justify-content:center;gap:4px;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.2;}
+.request-tabs button span{flex-shrink:0;font-variant-numeric:tabular-nums;}
+@media(max-width:720px){
+ .request-filterbar{gap:8px;align-items:flex-start;}
+ .filterbar .request-tabs{display:grid;grid-template-columns:0.85fr 1.6fr 1.05fr .65fr;gap:2px;justify-content:initial;width:100%;padding:4px;border-radius:15px;}
+ .request-tabs button{min-width:0;width:100%;height:39px;min-height:0;padding:0 5px;border-radius:11px;font-size:clamp(10px,2.8vw,13px);font-weight:600;letter-spacing:-.025em;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;display:block;}
+ .request-tabs button span{font-size:.88em;}
+}
