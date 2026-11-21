@@ -36,6 +36,24 @@
       "lng": 13.558753
     },
     {
+      "name": "Anhalter Bahnhof",
+      "kind": "S",
+      "lat": 52.503486,
+      "lng": 13.381362
+    },
+    {
+      "name": "Attilastraße",
+      "kind": "S",
+      "lat": 52.447681,
+      "lng": 13.360951
+    },
+    {
+      "name": "Babelsberg",
+      "kind": "S",
+      "lat": 52.391391,
+      "lng": 13.092871
+    },
+    {
       "name": "Baumschulenweg",
       "kind": "S",
       "lat": 52.467244,
@@ -64,18 +82,6 @@
       "kind": "S",
       "lat": 52.668385,
       "lng": 13.564578
-    },
-    {
-      "name": "Rummelsburg",
-      "kind": "S",
-      "lat": 52.493827,
-      "lng": 13.497786
-    },
-    {
-      "name": "Schöneweide",
-      "kind": "S",
-      "lat": 52.455127,
-      "lng": 13.509395
     },
     {
       "name": "Beusselstraße",
@@ -118,6 +124,12 @@
       "kind": "S",
       "lat": 52.715252,
       "lng": 13.27675
+    },
+    {
+      "name": "Bornholmer Straße",
+      "kind": "S",
+      "lat": 52.554491,
+      "lng": 13.397943
     },
     {
       "name": "Botanischer Garten",
@@ -174,6 +186,18 @@
       "lng": 13.751457
     },
     {
+      "name": "Feuerbachstraße",
+      "kind": "S",
+      "lat": 52.463546,
+      "lng": 13.332575
+    },
+    {
+      "name": "Flughafen Bln-Schönefeld",
+      "kind": "S",
+      "lat": 52.391062,
+      "lng": 13.51271
+    },
+    {
       "name": "Frankfurter Allee",
       "kind": "S",
       "lat": 52.515168,
@@ -216,16 +240,28 @@
       "lng": 13.289934
     },
     {
+      "name": "Gehrenseestraße",
+      "kind": "S",
+      "lat": 52.556011,
+      "lng": 13.524834
+    },
+    {
       "name": "Gesundbrunnen",
       "kind": "S",
       "lat": 52.548963,
       "lng": 13.388513
     },
     {
-      "name": "Grunewald",
+      "name": "Greifswalder Straße",
       "kind": "S",
-      "lat": 52.488693,
-      "lng": 13.26172
+      "lat": 52.54002,
+      "lng": 13.439561
+    },
+    {
+      "name": "Griebnitzsee",
+      "kind": "S",
+      "lat": 52.394439,
+      "lng": 13.128713
     },
     {
       "name": "Grünau",
@@ -240,6 +276,12 @@
       "lng": 13.542485
     },
     {
+      "name": "Grunewald",
+      "kind": "S",
+      "lat": 52.488693,
+      "lng": 13.26172
+    },
+    {
       "name": "Hackescher Markt",
       "kind": "S",
       "lat": 52.522622,
@@ -250,6 +292,12 @@
       "kind": "S",
       "lat": 52.496254,
       "lng": 13.290326
+    },
+    {
+      "name": "Hauptbahnhof",
+      "kind": "S",
+      "lat": 52.525592,
+      "lng": 13.369545
     },
     {
       "name": "Heerstraße",
@@ -504,16 +552,16 @@
       "lng": 13.193643
     },
     {
-      "name": "Nordbahnhof",
-      "kind": "S",
-      "lat": 52.532066,
-      "lng": 13.388464
-    },
-    {
       "name": "Nöldnerplatz",
       "kind": "S",
       "lat": 52.503497,
       "lng": 13.484452
+    },
+    {
+      "name": "Nordbahnhof",
+      "kind": "S",
+      "lat": 52.532066,
+      "lng": 13.388464
     },
     {
       "name": "Oberspree",
@@ -582,6 +630,18 @@
       "lng": 13.473126
     },
     {
+      "name": "Poelchaustraße",
+      "kind": "S",
+      "lat": 52.535593,
+      "lng": 13.535381
+    },
+    {
+      "name": "Potsdam Hauptbahnhof",
+      "kind": "S",
+      "lat": 52.391704,
+      "lng": 13.066782
+    },
+    {
       "name": "Potsdamer Platz",
       "kind": "S",
       "lat": 52.509379,
@@ -606,6 +666,12 @@
       "lng": 13.690405
     },
     {
+      "name": "Raoul-Wallenberg-Straße",
+      "kind": "S",
+      "lat": 52.550681,
+      "lng": 13.54746
+    },
+    {
       "name": "Rathaus Steglitz",
       "kind": "S",
       "lat": 52.455833,
@@ -616,6 +682,12 @@
       "kind": "S",
       "lat": 52.648798,
       "lng": 13.513799
+    },
+    {
+      "name": "Rummelsburg",
+      "kind": "S",
+      "lat": 52.493827,
+      "lng": 13.497786
     },
     {
       "name": "Savignyplatz",
@@ -636,16 +708,16 @@
       "lng": 13.215025
     },
     {
-      "name": "Schulzendorf (b Tegel)",
-      "kind": "S",
-      "lat": 52.613096,
-      "lng": 13.245929
-    },
-    {
       "name": "Schöneberg",
       "kind": "S",
       "lat": 52.479377,
       "lng": 13.352068
+    },
+    {
+      "name": "Schöneweide",
+      "kind": "S",
+      "lat": 52.455127,
+      "lng": 13.509395
     },
     {
       "name": "Schönfließ",
@@ -664,6 +736,12 @@
       "kind": "S",
       "lat": 52.571422,
       "lng": 13.381111
+    },
+    {
+      "name": "Schulzendorf (b Tegel)",
+      "kind": "S",
+      "lat": 52.613096,
+      "lng": 13.245929
     },
     {
       "name": "Sonnenallee",
@@ -690,7 +768,19 @@
       "lng": 13.53674
     },
     {
+      "name": "Storkower Straße",
+      "kind": "S",
+      "lat": 52.52391,
+      "lng": 13.464398
+    },
+    {
       "name": "Strausberg",
+      "kind": "S",
+      "lat": 52.532204,
+      "lng": 13.833611
+    },
+    {
+      "name": "Strausberg Stadt",
       "kind": "S",
       "lat": 52.532204,
       "lng": 13.833611
@@ -712,6 +802,12 @@
       "kind": "S",
       "lat": 52.475047,
       "lng": 13.365319
+    },
+    {
+      "name": "Sundgauer Straße",
+      "kind": "S",
+      "lat": 52.436544,
+      "lng": 13.274377
     },
     {
       "name": "Tegel",
@@ -832,6 +928,18 @@
       "kind": "S",
       "lat": 52.46903,
       "lng": 13.553202
+    },
+    {
+      "name": "Yorckstraße",
+      "kind": "S",
+      "lat": 52.49117,
+      "lng": 13.372128
+    },
+    {
+      "name": "Yorckstraße (Großgörschenstraße)",
+      "kind": "S",
+      "lat": 52.492289,
+      "lng": 13.367797
     },
     {
       "name": "Zehlendorf",
