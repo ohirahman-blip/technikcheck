@@ -1,0 +1,969 @@
+{
+  "source": "DB Station&Service Bahnhofsdaten 2017, matched to poldixd/vbb-stations S-Bahn operator list",
+  "sourceUrl": "https://github.com/ratopi/haltestellendaten",
+  "namesUrl": "https://github.com/poldixd/vbb-stations",
+  "license": "DB coordinates CC BY 4.0; station-name list MIT",
+  "generated": "2026-11-21",
+  "stations": [
+    {
+      "name": "Adlershof",
+      "kind": "S",
+      "lat": 52.435031,
+      "lng": 13.541129
+    },
+    {
+      "name": "Ahrensfelde",
+      "kind": "S",
+      "lat": 52.571375,
+      "lng": 13.565154
+    },
+    {
+      "name": "Alexanderplatz",
+      "kind": "S",
+      "lat": 52.521481,
+      "lng": 13.410961
+    },
+    {
+      "name": "Alt-Reinickendorf",
+      "kind": "S",
+      "lat": 52.578091,
+      "lng": 13.349617
+    },
+    {
+      "name": "Altglienicke",
+      "kind": "S",
+      "lat": 52.407299,
+      "lng": 13.558753
+    },
+    {
+      "name": "Anhalter Bahnhof",
+      "kind": "S",
+      "lat": 52.503486,
+      "lng": 13.381362
+    },
+    {
+      "name": "Attilastraße",
+      "kind": "S",
+      "lat": 52.447681,
+      "lng": 13.360951
+    },
+    {
+      "name": "Babelsberg",
+      "kind": "S",
+      "lat": 52.391391,
+      "lng": 13.092871
+    },
+    {
+      "name": "Baumschulenweg",
+      "kind": "S",
+      "lat": 52.467244,
+      "lng": 13.490097
+    },
+    {
+      "name": "Bellevue",
+      "kind": "S",
+      "lat": 52.519955,
+      "lng": 13.348263
+    },
+    {
+      "name": "Bergfelde (b Bln)",
+      "kind": "S",
+      "lat": 52.670303,
+      "lng": 13.320244
+    },
+    {
+      "name": "Bernau (b Bln)",
+      "kind": "S",
+      "lat": 52.675833,
+      "lng": 13.592293
+    },
+    {
+      "name": "Bernau-Friedenstal",
+      "kind": "S",
+      "lat": 52.668385,
+      "lng": 13.564578
+    },
+    {
+      "name": "Beusselstraße",
+      "kind": "S",
+      "lat": 52.534354,
+      "lng": 13.329042
+    },
+    {
+      "name": "Biesdorf",
+      "kind": "S",
+      "lat": 52.513097,
+      "lng": 13.555878
+    },
+    {
+      "name": "Birkenstein",
+      "kind": "S",
+      "lat": 52.515601,
+      "lng": 13.647187
+    },
+    {
+      "name": "Birkenwerder",
+      "kind": "S",
+      "lat": 52.688249,
+      "lng": 13.288772
+    },
+    {
+      "name": "Blankenburg",
+      "kind": "S",
+      "lat": 52.591164,
+      "lng": 13.44333
+    },
+    {
+      "name": "Blankenfelde (Kr Teltow-Fläming)",
+      "kind": "S",
+      "lat": 52.337213,
+      "lng": 13.415982
+    },
+    {
+      "name": "Borgsdorf",
+      "kind": "S",
+      "lat": 52.715252,
+      "lng": 13.27675
+    },
+    {
+      "name": "Bornholmer Straße",
+      "kind": "S",
+      "lat": 52.554491,
+      "lng": 13.397943
+    },
+    {
+      "name": "Botanischer Garten",
+      "kind": "S",
+      "lat": 52.447784,
+      "lng": 13.306766
+    },
+    {
+      "name": "Brandenburger Tor",
+      "kind": "S",
+      "lat": 52.516506,
+      "lng": 13.381815
+    },
+    {
+      "name": "Buch",
+      "kind": "S",
+      "lat": 52.636162,
+      "lng": 13.492286
+    },
+    {
+      "name": "Buckower Chaussee",
+      "kind": "S",
+      "lat": 52.410351,
+      "lng": 13.382912
+    },
+    {
+      "name": "Bundesplatz",
+      "kind": "S",
+      "lat": 52.477617,
+      "lng": 13.32959
+    },
+    {
+      "name": "Charlottenburg",
+      "kind": "S",
+      "lat": 52.504726,
+      "lng": 13.303524
+    },
+    {
+      "name": "Eichborndamm",
+      "kind": "S",
+      "lat": 52.577722,
+      "lng": 13.316835
+    },
+    {
+      "name": "Eichwalde",
+      "kind": "S",
+      "lat": 52.371352,
+      "lng": 13.615398
+    },
+    {
+      "name": "Erkner",
+      "kind": "S",
+      "lat": 52.428359,
+      "lng": 13.751457
+    },
+    {
+      "name": "Feuerbachstraße",
+      "kind": "S",
+      "lat": 52.463546,
+      "lng": 13.332575
+    },
+    {
+      "name": "Flughafen Bln-Schönefeld",
+      "kind": "S",
+      "lat": 52.391062,
+      "lng": 13.51271
+    },
+    {
+      "name": "Frankfurter Allee",
+      "kind": "S",
+      "lat": 52.515168,
+      "lng": 13.47441
+    },
+    {
+      "name": "Fredersdorf (b Bln)",
+      "kind": "S",
+      "lat": 52.526212,
+      "lng": 13.760628
+    },
+    {
+      "name": "Friedenau",
+      "kind": "S",
+      "lat": 52.470586,
+      "lng": 13.341388
+    },
+    {
+      "name": "Friedrichsfelde Ost",
+      "kind": "S",
+      "lat": 52.514169,
+      "lng": 13.520254
+    },
+    {
+      "name": "Friedrichshagen",
+      "kind": "S",
+      "lat": 52.457247,
+      "lng": 13.6246
+    },
+    {
+      "name": "Friedrichstraße",
+      "kind": "S",
+      "lat": 52.520394,
+      "lng": 13.387314
+    },
+    {
+      "name": "Frohnau",
+      "kind": "S",
+      "lat": 52.632758,
+      "lng": 13.289934
+    },
+    {
+      "name": "Gehrenseestraße",
+      "kind": "S",
+      "lat": 52.556011,
+      "lng": 13.524834
+    },
+    {
+      "name": "Gesundbrunnen",
+      "kind": "S",
+      "lat": 52.548963,
+      "lng": 13.388513
+    },
+    {
+      "name": "Greifswalder Straße",
+      "kind": "S",
+      "lat": 52.54002,
+      "lng": 13.439561
+    },
+    {
+      "name": "Griebnitzsee",
+      "kind": "S",
+      "lat": 52.394439,
+      "lng": 13.128713
+    },
+    {
+      "name": "Grünau",
+      "kind": "S",
+      "lat": 52.413028,
+      "lng": 13.573497
+    },
+    {
+      "name": "Grünbergallee",
+      "kind": "S",
+      "lat": 52.399411,
+      "lng": 13.542485
+    },
+    {
+      "name": "Grunewald",
+      "kind": "S",
+      "lat": 52.488693,
+      "lng": 13.26172
+    },
+    {
+      "name": "Hackescher Markt",
+      "kind": "S",
+      "lat": 52.522622,
+      "lng": 13.402364
+    },
+    {
+      "name": "Halensee",
+      "kind": "S",
+      "lat": 52.496254,
+      "lng": 13.290326
+    },
+    {
+      "name": "Hauptbahnhof",
+      "kind": "S",
+      "lat": 52.525592,
+      "lng": 13.369545
+    },
+    {
+      "name": "Heerstraße",
+      "kind": "S",
+      "lat": 52.508121,
+      "lng": 13.259379
+    },
+    {
+      "name": "Heidelberger Platz",
+      "kind": "S",
+      "lat": 52.479972,
+      "lng": 13.312018
+    },
+    {
+      "name": "Heiligensee",
+      "kind": "S",
+      "lat": 52.624586,
+      "lng": 13.229278
+    },
+    {
+      "name": "Hennigsdorf (b Bln)",
+      "kind": "S",
+      "lat": 52.638257,
+      "lng": 13.205454
+    },
+    {
+      "name": "Hermannstraße",
+      "kind": "S",
+      "lat": 52.46751,
+      "lng": 13.431313
+    },
+    {
+      "name": "Hermsdorf",
+      "kind": "S",
+      "lat": 52.617782,
+      "lng": 13.30769
+    },
+    {
+      "name": "Hirschgarten",
+      "kind": "S",
+      "lat": 52.457968,
+      "lng": 13.602134
+    },
+    {
+      "name": "Hohen Neuendorf (b Bln)",
+      "kind": "S",
+      "lat": 52.669072,
+      "lng": 13.287091
+    },
+    {
+      "name": "Hohenschönhausen",
+      "kind": "S",
+      "lat": 52.566111,
+      "lng": 13.512565
+    },
+    {
+      "name": "Hohenzollerndamm",
+      "kind": "S",
+      "lat": 52.488556,
+      "lng": 13.300257
+    },
+    {
+      "name": "Hoppegarten (Mark)",
+      "kind": "S",
+      "lat": 52.518122,
+      "lng": 13.672956
+    },
+    {
+      "name": "Humboldthain",
+      "kind": "S",
+      "lat": 52.544795,
+      "lng": 13.379277
+    },
+    {
+      "name": "Innsbrucker Platz",
+      "kind": "S",
+      "lat": 52.478084,
+      "lng": 13.342197
+    },
+    {
+      "name": "Jannowitzbrücke",
+      "kind": "S",
+      "lat": 52.51427,
+      "lng": 13.419347
+    },
+    {
+      "name": "Julius-Leber-Brücke",
+      "kind": "S",
+      "lat": 52.486519,
+      "lng": 13.361266
+    },
+    {
+      "name": "Jungfernheide",
+      "kind": "S",
+      "lat": 52.530276,
+      "lng": 13.299437
+    },
+    {
+      "name": "Karl-Bonhoeffer-Nervenklinik",
+      "kind": "S",
+      "lat": 52.578048,
+      "lng": 13.329176
+    },
+    {
+      "name": "Karlshorst",
+      "kind": "S",
+      "lat": 52.480681,
+      "lng": 13.526813
+    },
+    {
+      "name": "Karow",
+      "kind": "S",
+      "lat": 52.614884,
+      "lng": 13.469204
+    },
+    {
+      "name": "Kaulsdorf",
+      "kind": "S",
+      "lat": 52.512093,
+      "lng": 13.58894
+    },
+    {
+      "name": "Köllnische Heide",
+      "kind": "S",
+      "lat": 52.469653,
+      "lng": 13.467807
+    },
+    {
+      "name": "Königs Wusterhausen",
+      "kind": "S",
+      "lat": 52.296635,
+      "lng": 13.631472
+    },
+    {
+      "name": "Köpenick",
+      "kind": "S",
+      "lat": 52.45861,
+      "lng": 13.580942
+    },
+    {
+      "name": "Landsberger Allee",
+      "kind": "S",
+      "lat": 52.529593,
+      "lng": 13.454567
+    },
+    {
+      "name": "Lankwitz",
+      "kind": "S",
+      "lat": 52.438749,
+      "lng": 13.341954
+    },
+    {
+      "name": "Lichtenberg",
+      "kind": "S",
+      "lat": 52.509896,
+      "lng": 13.496923
+    },
+    {
+      "name": "Lichtenrade",
+      "kind": "S",
+      "lat": 52.387297,
+      "lng": 13.396175
+    },
+    {
+      "name": "Lichterfelde Ost",
+      "kind": "S",
+      "lat": 52.429451,
+      "lng": 13.328556
+    },
+    {
+      "name": "Lichterfelde Süd",
+      "kind": "S",
+      "lat": 52.410899,
+      "lng": 13.30904
+    },
+    {
+      "name": "Lichterfelde West",
+      "kind": "S",
+      "lat": 52.44335,
+      "lng": 13.293732
+    },
+    {
+      "name": "Mahlow",
+      "kind": "S",
+      "lat": 52.36054,
+      "lng": 13.407932
+    },
+    {
+      "name": "Mahlsdorf",
+      "kind": "S",
+      "lat": 52.512163,
+      "lng": 13.611071
+    },
+    {
+      "name": "Marienfelde",
+      "kind": "S",
+      "lat": 52.423634,
+      "lng": 13.375127
+    },
+    {
+      "name": "Marzahn",
+      "kind": "S",
+      "lat": 52.543608,
+      "lng": 13.541341
+    },
+    {
+      "name": "Mehrower Allee",
+      "kind": "S",
+      "lat": 52.557759,
+      "lng": 13.553699
+    },
+    {
+      "name": "Messe Nord/ICC",
+      "kind": "S",
+      "lat": 52.507525,
+      "lng": 13.283445
+    },
+    {
+      "name": "Messe Süd (Eichkamp)",
+      "kind": "S",
+      "lat": 52.49875,
+      "lng": 13.270118
+    },
+    {
+      "name": "Mexikoplatz",
+      "kind": "S",
+      "lat": 52.436937,
+      "lng": 13.232712
+    },
+    {
+      "name": "Mühlenbeck-Mönchmühle",
+      "kind": "S",
+      "lat": 52.654605,
+      "lng": 13.386844
+    },
+    {
+      "name": "Neuenhagen (b Bln)",
+      "kind": "S",
+      "lat": 52.520453,
+      "lng": 13.700494
+    },
+    {
+      "name": "Neukölln",
+      "kind": "S",
+      "lat": 52.46942,
+      "lng": 13.44306
+    },
+    {
+      "name": "Nikolassee",
+      "kind": "S",
+      "lat": 52.431807,
+      "lng": 13.193643
+    },
+    {
+      "name": "Nöldnerplatz",
+      "kind": "S",
+      "lat": 52.503497,
+      "lng": 13.484452
+    },
+    {
+      "name": "Nordbahnhof",
+      "kind": "S",
+      "lat": 52.532066,
+      "lng": 13.388464
+    },
+    {
+      "name": "Oberspree",
+      "kind": "S",
+      "lat": 52.452466,
+      "lng": 13.538209
+    },
+    {
+      "name": "Olympiastadion",
+      "kind": "S",
+      "lat": 52.511166,
+      "lng": 13.242389
+    },
+    {
+      "name": "Oranienburger Straße",
+      "kind": "S",
+      "lat": 52.52521,
+      "lng": 13.393052
+    },
+    {
+      "name": "Osdorfer Straße",
+      "kind": "S",
+      "lat": 52.418841,
+      "lng": 13.314288
+    },
+    {
+      "name": "Ostbahnhof",
+      "kind": "S",
+      "lat": 52.510977,
+      "lng": 13.434564
+    },
+    {
+      "name": "Ostkreuz",
+      "kind": "S",
+      "lat": 52.503037,
+      "lng": 13.469105
+    },
+    {
+      "name": "Pankow",
+      "kind": "S",
+      "lat": 52.566477,
+      "lng": 13.41077
+    },
+    {
+      "name": "Pankow-Heinersdorf",
+      "kind": "S",
+      "lat": 52.577963,
+      "lng": 13.429363
+    },
+    {
+      "name": "Petershagen Nord",
+      "kind": "S",
+      "lat": 52.528849,
+      "lng": 13.789481
+    },
+    {
+      "name": "Pichelsberg",
+      "kind": "S",
+      "lat": 52.510393,
+      "lng": 13.227134
+    },
+    {
+      "name": "Plänterwald",
+      "kind": "S",
+      "lat": 52.478542,
+      "lng": 13.473126
+    },
+    {
+      "name": "Poelchaustraße",
+      "kind": "S",
+      "lat": 52.535593,
+      "lng": 13.535381
+    },
+    {
+      "name": "Potsdam Hauptbahnhof",
+      "kind": "S",
+      "lat": 52.391704,
+      "lng": 13.066782
+    },
+    {
+      "name": "Potsdamer Platz",
+      "kind": "S",
+      "lat": 52.509379,
+      "lng": 13.375988
+    },
+    {
+      "name": "Prenzlauer Allee",
+      "kind": "S",
+      "lat": 52.544615,
+      "lng": 13.426412
+    },
+    {
+      "name": "Priesterweg",
+      "kind": "S",
+      "lat": 52.459914,
+      "lng": 13.356281
+    },
+    {
+      "name": "Rahnsdorf",
+      "kind": "S",
+      "lat": 52.451536,
+      "lng": 13.690405
+    },
+    {
+      "name": "Raoul-Wallenberg-Straße",
+      "kind": "S",
+      "lat": 52.550681,
+      "lng": 13.54746
+    },
+    {
+      "name": "Rathaus Steglitz",
+      "kind": "S",
+      "lat": 52.455833,
+      "lng": 13.322948
+    },
+    {
+      "name": "Röntgental",
+      "kind": "S",
+      "lat": 52.648798,
+      "lng": 13.513799
+    },
+    {
+      "name": "Rummelsburg",
+      "kind": "S",
+      "lat": 52.493827,
+      "lng": 13.497786
+    },
+    {
+      "name": "Savignyplatz",
+      "kind": "S",
+      "lat": 52.505093,
+      "lng": 13.319271
+    },
+    {
+      "name": "Schichauweg",
+      "kind": "S",
+      "lat": 52.398837,
+      "lng": 13.389303
+    },
+    {
+      "name": "Schlachtensee",
+      "kind": "S",
+      "lat": 52.439976,
+      "lng": 13.215025
+    },
+    {
+      "name": "Schöneberg",
+      "kind": "S",
+      "lat": 52.479377,
+      "lng": 13.352068
+    },
+    {
+      "name": "Schöneweide",
+      "kind": "S",
+      "lat": 52.455127,
+      "lng": 13.509395
+    },
+    {
+      "name": "Schönfließ",
+      "kind": "S",
+      "lat": 52.665075,
+      "lng": 13.339419
+    },
+    {
+      "name": "Schönhauser Allee",
+      "kind": "S",
+      "lat": 52.5492,
+      "lng": 13.41546
+    },
+    {
+      "name": "Schönholz",
+      "kind": "S",
+      "lat": 52.571422,
+      "lng": 13.381111
+    },
+    {
+      "name": "Schulzendorf (b Tegel)",
+      "kind": "S",
+      "lat": 52.613096,
+      "lng": 13.245929
+    },
+    {
+      "name": "Sonnenallee",
+      "kind": "S",
+      "lat": 52.473101,
+      "lng": 13.455851
+    },
+    {
+      "name": "Spandau",
+      "kind": "S",
+      "lat": 52.534475,
+      "lng": 13.197534
+    },
+    {
+      "name": "Spindlersfeld",
+      "kind": "S",
+      "lat": 52.447162,
+      "lng": 13.561448
+    },
+    {
+      "name": "Springpfuhl",
+      "kind": "S",
+      "lat": 52.526348,
+      "lng": 13.53674
+    },
+    {
+      "name": "Storkower Straße",
+      "kind": "S",
+      "lat": 52.52391,
+      "lng": 13.464398
+    },
+    {
+      "name": "Strausberg",
+      "kind": "S",
+      "lat": 52.532204,
+      "lng": 13.833611
+    },
+    {
+      "name": "Strausberg Stadt",
+      "kind": "S",
+      "lat": 52.532204,
+      "lng": 13.833611
+    },
+    {
+      "name": "Stresow",
+      "kind": "S",
+      "lat": 52.531976,
+      "lng": 13.209125
+    },
+    {
+      "name": "Südende",
+      "kind": "S",
+      "lat": 52.448457,
+      "lng": 13.353894
+    },
+    {
+      "name": "Südkreuz",
+      "kind": "S",
+      "lat": 52.475047,
+      "lng": 13.365319
+    },
+    {
+      "name": "Sundgauer Straße",
+      "kind": "S",
+      "lat": 52.436544,
+      "lng": 13.274377
+    },
+    {
+      "name": "Tegel",
+      "kind": "S",
+      "lat": 52.587998,
+      "lng": 13.289781
+    },
+    {
+      "name": "Teltow Stadt",
+      "kind": "S",
+      "lat": 52.396906,
+      "lng": 13.276623
+    },
+    {
+      "name": "Tempelhof",
+      "kind": "S",
+      "lat": 52.470967,
+      "lng": 13.384547
+    },
+    {
+      "name": "Tiergarten",
+      "kind": "S",
+      "lat": 52.514061,
+      "lng": 13.336392
+    },
+    {
+      "name": "Treptower Park",
+      "kind": "S",
+      "lat": 52.493559,
+      "lng": 13.461441
+    },
+    {
+      "name": "Waidmannslust",
+      "kind": "S",
+      "lat": 52.60648,
+      "lng": 13.320996
+    },
+    {
+      "name": "Wannsee",
+      "kind": "S",
+      "lat": 52.421058,
+      "lng": 13.179336
+    },
+    {
+      "name": "Warschauer Straße",
+      "kind": "S",
+      "lat": 52.505976,
+      "lng": 13.451646
+    },
+    {
+      "name": "Wartenberg",
+      "kind": "S",
+      "lat": 52.572989,
+      "lng": 13.503633
+    },
+    {
+      "name": "Wedding",
+      "kind": "S",
+      "lat": 52.543251,
+      "lng": 13.36817
+    },
+    {
+      "name": "Westend",
+      "kind": "S",
+      "lat": 52.51807,
+      "lng": 13.284638
+    },
+    {
+      "name": "Westhafen",
+      "kind": "S",
+      "lat": 52.53625,
+      "lng": 13.344253
+    },
+    {
+      "name": "Westkreuz",
+      "kind": "S",
+      "lat": 52.500737,
+      "lng": 13.283966
+    },
+    {
+      "name": "Wildau",
+      "kind": "S",
+      "lat": 52.319935,
+      "lng": 13.633779
+    },
+    {
+      "name": "Wilhelmshagen",
+      "kind": "S",
+      "lat": 52.438711,
+      "lng": 13.722143
+    },
+    {
+      "name": "Wilhelmsruh",
+      "kind": "S",
+      "lat": 52.581447,
+      "lng": 13.362976
+    },
+    {
+      "name": "Wittenau",
+      "kind": "S",
+      "lat": 52.597044,
+      "lng": 13.334446
+    },
+    {
+      "name": "Wollankstraße",
+      "kind": "S",
+      "lat": 52.565482,
+      "lng": 13.391791
+    },
+    {
+      "name": "Wuhletal",
+      "kind": "S",
+      "lat": 52.512417,
+      "lng": 13.575365
+    },
+    {
+      "name": "Wuhlheide",
+      "kind": "S",
+      "lat": 52.46903,
+      "lng": 13.553202
+    },
+    {
+      "name": "Yorckstraße",
+      "kind": "S",
+      "lat": 52.49117,
+      "lng": 13.372128
+    },
+    {
+      "name": "Yorckstraße (Großgörschenstraße)",
+      "kind": "S",
+      "lat": 52.492289,
+      "lng": 13.367797
+    },
+    {
+      "name": "Zehlendorf",
+      "kind": "S",
+      "lat": 52.431067,
+      "lng": 13.258659
+    },
+    {
+      "name": "Zepernick (b Bernau)",
+      "kind": "S",
+      "lat": 52.659449,
+      "lng": 13.533642
+    },
+    {
+      "name": "Zeuthen",
+      "kind": "S",
+      "lat": 52.348936,
+      "lng": 13.627173
+    },
+    {
+      "name": "Zoologischer Garten",
+      "kind": "S",
+      "lat": 52.507277,
+      "lng": 13.331992
+    }
+  ]
+}
