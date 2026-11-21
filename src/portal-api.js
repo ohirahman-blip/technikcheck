@@ -14,6 +14,7 @@ export function createPortalApi(client) {
     },
     issue:(id,greeting)=>rpc('admin_issue_setup',{p_customer_id:id,p_greeting:greeting}),
     update:(id,status,notes)=>rpc('admin_update_request',{p_id:id,p_status:status,p_notes:notes}),
+    deleteRequest:id=>rpc('admin_delete_request',{p_id:id}),
     revoke:id=>rpc('admin_revoke_customer_access',{p_customer_id:id}),
     enroll:(code,secret)=>rpc('portal_enroll',{p_setup_code:code,p_device_secret:secret}),
     status:secret=>rpc('portal_device_status',{p_device_secret:secret}),
