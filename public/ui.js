@@ -13,7 +13,7 @@ async function api(path,method='GET',body){return window.technikData.request(pat
 async function refresh(){try{state=await api('data');await loadPortalRequests();render()}catch(e){popup(e.message,true);if(!$('#content').innerHTML)$('#content').innerHTML='<div class="notice">'+esc(e.message)+'</div>';}}
 function setView(v){window.closeCustomPicker?.();view=v;search='';document.querySelectorAll('#nav button').forEach(b=>b.classList.toggle('active',b.dataset.view===v));render();const content=$('#content');content.classList.remove('page-enter');void content.offsetWidth;content.classList.add('page-enter')}
 const titles={requests:['Deine Anfragen.','Rückrufe und neue Aufträge übersichtlich abarbeiten.'],dashboard:['Guten Überblick.','Dein Tag, deine Kunden, dein nächster Schritt.'],calendar:['Deine Termine.','Plane deine Besuche mit genügend Zeit dazwischen.'],customers:['Deine Kunden.','Kontaktdaten und bisherige Arbeiten an einem Ort.'],tasks:['Offene Aufgaben.','Was noch erledigt werden muss.'],finance:['Deine Zahlen.','Vereinbarte Beträge, Zahlungen und direkte Kosten.'],archive:['Einsatzarchiv.','Abgeschlossene und abgesagte Termine.']};
-function render(){if(map){map.remove();map=null}$('#pageTitle').textContent=titles[view][0];$('#pageSub').textContent=titles[view][1];let f={requests:requestsView,dashboard:dashboard,calendar:calendar,customers:customers,tasks:tasks,finance:finance,archive:archive}[view];$('#content').innerHTML=f();window.enhanceControls?.($('#content'));if((view==='dashboard'||view==='calendar')&&$('#mainMap'))setTimeout(drawMap,50)}
+function render(){closeMapDetails();if(map){map.remove();map=null}$('#pageTitle').textContent=titles[view][0];$('#pageSub').textContent=titles[view][1];let f={requests:requestsView,dashboard:dashboard,calendar:calendar,customers:customers,tasks:tasks,finance:finance,archive:archive}[view];$('#content').innerHTML=f();window.enhanceControls?.($('#content'));if((view==='dashboard'||view==='calendar')&&$('#mainMap'))setTimeout(drawMap,50)}
 function metric(label,value,note){return `<div class="card metric"><div class="label">${label}</div><b>${value}</b><small>${note}</small></div>`}
 function nextVisits(){return active().filter(a=>new Date(a.ends_at)>=now()).sort((a,b)=>a.starts_at.localeCompare(b.starts_at))}
 function stationBadge(c){const s=window.nearestRailStation?.(c.lat,c.lng);return s?`<span class="station-inline"><span class="rail-icon ${s.kind==='U'?'rail-u':'rail-s'}">${s.kind}</span> ${esc(s.name)} · ca. ${s.meters} m Luftlinie</span>`:'';}
@@ -84,12 +84,31 @@ function mapPopup(c,station){
  const stationLine=station?`<div class="map-popup-transit"><span class="rail-icon ${station.kind==='U'?'rail-u':'rail-s'}">${station.kind}</span><span>${esc(station.name)}<small>ca. ${station.meters} m Luftlinie</small></span></div>`:'';
  return `<div class="map-popup-card"><span class="map-popup-label">Kundenstandort</span><h3>${esc(c.name)}</h3><p>${esc(c.address||'Keine Adresse')}</p>${appointment}${stationLine}<button class="map-popup-action" type="button" data-map-customer="${c.id}">Kundenprofil öffnen</button></div>`;
 }
+function closeMapDetails(){
+ const existing=document.getElementById('mapDetailsOverlay');if(existing)existing.remove();
+ document.removeEventListener('keydown',mapDetailsEscape);
+}
+function mapDetailsEscape(event){if(event.key==='Escape')closeMapDetails();}
+function showMapDetails(c,station){
+ closeMapDetails();
+ const overlay=document.createElement('div');overlay.className='map-details-overlay';overlay.id='mapDetailsOverlay';
+ overlay.innerHTML=`<section class="map-details-panel" role="dialog" aria-modal="true" aria-label="Kundenstandort"><button type="button" class="map-details-close" aria-label="Schließen">×</button>${mapPopup(c,station)}</section>`;
+ document.body.append(overlay);
+ overlay.addEventListener('click',e=>{
+  if(e.target===overlay||e.target.closest('.map-details-close'))closeMapDetails();
+  const customerButton=e.target.closest('[data-map-customer]');
+  if(customerButton){closeMapDetails();showCustomer(Number(customerButton.dataset.mapCustomer));}
+ });
+ document.addEventListener('keydown',mapDetailsEscape);
+ overlay.querySelector('.map-details-close').focus();
+}
 function drawMap(){let el=$('#mainMap');if(!el)return;if(!window.maplibregl||!window.offlineMapStyle){el.innerHTML='<div class="empty">Kartendateien fehlen. Bitte das gesamte Paket entpacken.</div>';return}
  map=makeOfflineMap('mainMap');let ids=new Set(active().map(a=>a.customer_id)),bounds=new maplibregl.LngLatBounds(),stationKeys=new Set();let count=0;
  state.customers.filter(c=>(view==='dashboard'?!c.archived:ids.has(c.id))&&c.lat!=null&&c.lng!=null).forEach(c=>{
   const point=[Number(c.lng),Number(c.lat)],station=window.nearestRailStation?.(c.lat,c.lng);
   
-  new maplibregl.Marker({color:'#c62828'}).setLngLat(point).setPopup(new maplibregl.Popup({offset:22,maxWidth:'330px',className:'technik-map-popup'}).setHTML(mapPopup(c,station))).addTo(map);
+  const customerMarker=new maplibregl.Marker({color:'#c62828'}).setLngLat(point).addTo(map);
+  customerMarker.getElement().addEventListener('click',()=>showMapDetails(c,station));
   if(station&&!stationKeys.has(station.kind+station.name)){
     stationKeys.add(station.kind+station.name);
     const marker=document.createElement('div');marker.className='rail-map-marker '+(station.kind==='U'?'rail-u':'rail-s');marker.textContent=station.kind;
